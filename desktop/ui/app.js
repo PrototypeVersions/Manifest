@@ -25,6 +25,7 @@ const newChatBtn = $("newChatBtn");
 let history = [];
 let activeAssistant = null;
 let generating = false;
+let starting = false;
 
 function formatBytes(bytes) {
   if (!Number.isFinite(bytes) || bytes <= 0) return "Preparing download…";
@@ -84,7 +85,8 @@ async function installModel() {
     downloadText.textContent = "Verified and installed";
     installBtn.textContent = "Installed ✓";
     readyCard.classList.remove("hidden");
-    setStatus("LOCAL AI INSTALLED / READY TO START");
+    setStatus("LOCAL AI INSTALLED / STARTING MANIFEST");
+    await startManifest();
   } catch (err) {
     installBtn.disabled = false;
     installBtn.textContent = "Try Install Again ↓";
@@ -93,6 +95,8 @@ async function installModel() {
 }
 
 async function startManifest() {
+  if (starting || !chatView.classList.contains("hidden")) return;
+  starting = true;
   startBtn.disabled = true;
   startBtn.firstChild.textContent = "Starting… ";
   setStatus("STARTING PRIVATE LOCAL RUNTIME");
@@ -105,6 +109,8 @@ async function startManifest() {
     setStatus(`START ERROR / ${String(err)}`);
     startBtn.disabled = false;
     startBtn.firstChild.textContent = "Start Manifest ";
+  } finally {
+    starting = false;
   }
 }
 
@@ -143,8 +149,8 @@ async function sendMessage(text) {
   try {
     await invoke("chat", { messages: history });
   } catch (err) {
-    if (!activeAssistant.textContent) activeAssistant.textContent = `I couldn't complete that locally: ${String(err)}`;
-    activeAssistant.classList.remove("typing-cursor");
+    if (activeAssistant && !activeAssistant.textContent) activeAssistant.textContent = `I couldn't complete that locally: ${String(err)}`;
+    activeAssistant?.classList.remove("typing-cursor");
     generating = false;
     sendBtn.disabled = false;
   }
@@ -204,5 +210,7 @@ listen("chat-done", () => {
       $("scorePill").textContent = `MANIFEST SCORE ${p.score}`;
       profileCard.classList.remove("hidden");
     } catch (_) {}
+    setStatus("LOCAL AI INSTALLED / STARTING MANIFEST");
+    await startManifest();
   }
 })();
