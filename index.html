@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#f2f0ea" />
   <title>Manifest — Your AI. Your Devices.</title>
-  <meta name="description" content="Manifest is being built to turn the computing power you already own into personal AI — analyzing your hardware, choosing local models, and routing work automatically." />
+  <meta name="description" content="Manifest is being built to turn the computing power you already own into personal AI — analyzing hardware, installing the right local models, and routing work automatically." />
   <link rel="preconnect" href="https://esm.run" crossorigin>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="modal.css" />
   <link rel="stylesheet" href="sources.css" />
+  <link rel="stylesheet" href="product.css" />
 </head>
 <body>
   <header class="site-header">
@@ -32,7 +33,7 @@
 
     <section class="feature-strip" id="features">
       <article><div class="feature-icon device-icon"></div><h3>Device Intelligence</h3><p>Manifest analyzes the hardware you own and understands what level of local AI it can comfortably run.</p></article>
-      <article><div class="feature-icon database-icon"></div><h3>One-Click AI</h3><p>The desktop vision: Manifest chooses, downloads and configures the right models without making you learn model infrastructure.</p></article>
+      <article><div class="feature-icon database-icon"></div><h3>One-Click AI</h3><p>Manifest Desktop is designed to choose, download and configure the right models without making you learn model infrastructure.</p></article>
       <article><div class="feature-icon lock-icon"></div><h3>Private by Design</h3><p>Local conversations and files can remain on your own devices instead of being sent to a remote AI service.</p></article>
       <article><div class="feature-icon growth-icon"></div><h3>Automatic Routing</h3><p>Manifest is designed to choose the right local intelligence for coding, reasoning, vision and other tasks automatically.</p></article>
     </section>
@@ -50,21 +51,57 @@
       </div>
     </section>
 
+    <section class="desktop-preview" id="desktop-preview">
+      <div class="preview-head">
+        <div class="eyebrow">MANIFEST DESKTOP</div>
+        <h2>From installation to intelligence.</h2>
+        <p>The desktop product is designed so the user never has to search model repositories, compare quantizations, configure runtimes or manage API endpoints. Manifest does that work.</p>
+      </div>
+      <div class="desktop-sequence">
+        <article class="desktop-step"><span class="step-mark"></span><small>01</small><strong>Install Manifest</strong><p>One native application for Windows or macOS.</p></article>
+        <article class="desktop-step"><span class="step-mark"></span><small>02</small><strong>Analyze Hardware</strong><p>Inspect CPU, GPU, memory, storage and available acceleration.</p></article>
+        <article class="desktop-step"><span class="step-mark"></span><small>03</small><strong>Choose the Fit</strong><p>Manifest ranks compatible AI and recommends the best setup for this machine.</p></article>
+        <article class="desktop-step"><span class="step-mark"></span><small>04</small><strong>Install My AI</strong><p>Download only the selected model package and configure the runtime automatically.</p></article>
+        <article class="desktop-step"><span class="step-mark"></span><small>05</small><strong>Just Ask</strong><p>Manifest routes each task without requiring the user to think about model names.</p></article>
+      </div>
+      <div class="setup-modes" aria-label="Illustrative Manifest Desktop setup modes">
+        <article class="setup-mode"><span>LOWEST STORAGE</span><strong>Fast</strong><p>A compact setup for quick everyday assistance and lighter hardware.</p></article>
+        <article class="setup-mode recommended"><span>RECOMMENDED</span><strong>Balanced</strong><p>The strongest practical mix of quality, speed and storage for the device.</p></article>
+        <article class="setup-mode"><span>MOST CAPABLE</span><strong>Maximum</strong><p>Larger or specialized local intelligence when the hardware comfortably supports it.</p></article>
+      </div>
+      <div class="catalog-note"><span><strong>Know about many. Store only what makes sense.</strong> Manifest’s model catalog can track a broad ecosystem without downloading every model.</span><span>The device stores only the models the user actually installs.</span></div>
+    </section>
+
+    <section class="upgrade-section" id="upgrades">
+      <div class="upgrade-copy">
+        <div class="eyebrow">AI UPGRADES</div>
+        <h2>Your AI should improve as open AI improves.</h2>
+        <p>Manifest is designed to keep evaluating new models against your hardware. When a better fit appears, it can recommend an upgrade instead of making you follow model releases yourself.</p>
+      </div>
+      <div class="upgrade-card" aria-label="Illustrative Manifest AI upgrade notification">
+        <div class="upgrade-card-top"><span class="upgrade-pulse"></span><span>ILLUSTRATIVE DESKTOP PREVIEW</span></div>
+        <h3>Intelligence upgrade available.</h3>
+        <p>A newer local model appears to be a better fit for this device. Manifest can replace the current model without changing your conversations, projects or interface.</p>
+        <div class="upgrade-metrics"><div><small>Reasoning</small><strong>Higher quality</strong></div><div><small>Performance</small><strong>Better device fit</strong></div><div><small>Storage</small><strong>Shown before download</strong></div></div>
+        <div class="upgrade-actions"><button type="button" disabled>Upgrade</button><span>Preview only · desktop feature</span></div>
+      </div>
+    </section>
+
     <section class="roadmap-section" id="roadmap">
       <div class="roadmap-title"><div class="eyebrow">ROADMAP</div><h2>From browser prototype to personal AI infrastructure.</h2></div>
       <div class="roadmap-grid">
         <article><b>NOW</b><h3>Browser Prototype</h3><p>Working device analysis, browser-local AI, streaming chat, and optional connections to existing local model runtimes.</p></article>
-        <article><b>NEXT</b><h3>Manifest Desktop</h3><p>One native installation that can inspect hardware, manage local inference directly, and download models for the user.</p></article>
+        <article><b>NEXT</b><h3>Manifest Desktop</h3><p>One native installation that can inspect hardware, manage local inference directly, and download selected models for the user.</p></article>
         <article><b>THEN</b><h3>Automatic Intelligence</h3><p>Manifest evaluates the task and quietly selects the best model, modality and compute path without model hunting.</p></article>
         <article><b>FUTURE</b><h3>Personal AI Network</h3><p>Persistent private knowledge, local agents, upgrades, and intelligent routing across the phones and computers you own.</p></article>
       </div>
     </section>
 
     <section class="demo-section" id="demo">
-      <div class="demo-copy"><div class="eyebrow">LIVE BROWSER PROTOTYPE</div><h2>Try Manifest<br>right now.</h2><p>The browser demo shows the first piece of the larger idea: Manifest analyzes this device, recommends a local model, and runs it without a per-message API fee. Existing Ollama and LM Studio installations remain available under Advanced.</p></div>
+      <div class="demo-copy"><div class="eyebrow">LIVE BROWSER PROTOTYPE</div><h2>Try Manifest<br>right now.</h2><p>The browser demo proves the first pieces of the concept: hardware-aware setup, local inference, streaming chat and no per-message API fee.</p><div class="prototype-note"><strong>Why only two models here?</strong> This browser prototype intentionally uses two lightweight WebLLM models to demonstrate the workflow reliably. Manifest Desktop is designed to maintain a much broader model catalog, evaluate what fits your computer, and download only the models you choose or approve.</div><span class="desktop-badge">DESKTOP WILL SUPPORT A BROADER LOCAL MODEL ECOSYSTEM</span></div>
       <div class="demo-app">
         <div class="demo-topbar"><strong>MANIFEST</strong><span class="status-pill" id="statusPill">Not loaded</span><span class="active-model-label" id="activeModelLabel">No model selected</span><div><button id="newChatDemoBtn" type="button">New Chat</button><button id="sourcesBtn" type="button">Advanced</button></div></div>
-        <div class="welcome" id="welcome"><h3>Your private local AI</h3><p>No API key. No per-message fee.</p><button class="load-button" id="loadModelBtn" type="button" onclick="if(this.textContent.trim()==='Analyze Device'){event.stopImmediatePropagation();const modal=document.getElementById('deviceModal');if(modal&&!modal.open)modal.showModal();document.getElementById('analyzeAgainBtn')?.click();}">Analyze Device</button><div class="load-note" id="loadNote">Let Manifest analyze this browser and recommend a local model. Advanced users can also connect models they already run elsewhere.</div><div class="suggestion-grid"><button class="suggestion" data-prompt="Explain something surprising about the universe in simple language.">Explain something surprising</button><button class="suggestion" data-prompt="Help me think through a difficult decision step by step.">Help me think through a decision</button><button class="suggestion" data-prompt="Write a short, vivid story about a city that wakes up one day with no internet.">Create something original</button></div></div>
+        <div class="welcome" id="welcome"><h3>Your private local AI</h3><p>No API key. No per-message fee.</p><button class="load-button" id="loadModelBtn" type="button" onclick="if(this.textContent.trim()==='Analyze Device'){event.stopImmediatePropagation();const modal=document.getElementById('deviceModal');if(modal&&!modal.open)modal.showModal();document.getElementById('analyzeAgainBtn')?.click();}">Analyze Device</button><div class="load-note" id="loadNote">Let Manifest analyze this browser and recommend a local AI experience. Advanced users can also connect models they already run elsewhere.</div><div class="suggestion-grid"><button class="suggestion" data-prompt="Explain something surprising about the universe in simple language.">Explain something surprising</button><button class="suggestion" data-prompt="Help me think through a difficult decision step by step.">Help me think through a decision</button><button class="suggestion" data-prompt="Write a short, vivid story about a city that wakes up one day with no internet.">Create something original</button></div></div>
         <div class="messages hidden" id="messages" aria-live="polite"></div>
         <div class="progress-wrap hidden" id="progressWrap"><div class="progress-text" id="progressText">Preparing model…</div><div class="progress-track"><div class="progress-bar" id="progressBar"></div></div></div>
         <form class="composer" id="composer"><textarea id="promptInput" rows="1" placeholder="Ask anything…" aria-label="Message Manifest"></textarea><button class="send-button" id="sendBtn" type="submit" disabled>↑</button></form>
@@ -78,12 +115,18 @@
 
   <dialog class="device-modal" id="deviceModal">
     <div class="device-modal-card">
-      <div class="device-modal-head"><div><h2>Device Analysis</h2><p>Manifest is analyzing your device to find the best browser-local AI experience.</p></div><button class="device-modal-close" id="deviceModalClose" type="button" aria-label="Close">×</button></div>
+      <div class="device-modal-head"><div><h2>Device Analysis</h2><p>Manifest is analyzing what this browser can safely expose, then previewing what the native desktop product can do with deeper hardware access.</p></div><button class="device-modal-close" id="deviceModalClose" type="button" aria-label="Close">×</button></div>
       <div class="analysis-grid"><div><span>Device</span><strong id="deviceName">Waiting for analysis</strong></div><div><span>Platform</span><strong id="specPlatform">—</strong></div><div><span>CPU Threads</span><strong id="specCores">—</strong></div><div><span>System Memory</span><strong id="specMemory">—</strong></div><div><span>Graphics</span><strong id="specGPU">—</strong></div><div><span>WebGPU Support</span><strong id="specWebGPU">—</strong></div></div>
-      <div class="modal-capacity"><div class="modal-capacity-row"><span>Estimated AI Capacity</span><b id="capacityScore">—</b></div><div class="modal-capacity-track"><div id="capacityBar"></div></div><p id="capacityLabel">Beginning analysis…</p></div>
-      <div class="modal-recommendation"><div class="modal-rec-check">✓</div><div><span>Recommended Browser Model</span><strong id="recommendedTier">Analyzing…</strong><p id="recommendedReason">Manifest will choose between the WebLLM models currently included in this browser prototype.</p></div></div>
-      <div class="modal-actions"><button id="useRecommendedBtn" type="button" disabled>Use This Model</button><button id="analyzeAgainBtn" type="button">Analyze Again</button><span class="modal-state" id="scanState"><i></i> Ready</span></div>
+      <div class="modal-capacity"><div class="modal-capacity-row"><span>Browser AI Capacity</span><b id="capacityScore">—</b></div><div class="modal-capacity-track"><div id="capacityBar"></div></div><p id="capacityLabel">Beginning analysis…</p></div>
+      <div class="analysis-context">
+        <div class="analysis-context-card"><span>Browser Experience</span><strong id="experienceTier">Analyzing…</strong><p>Based on the capabilities available to this browser prototype.</p></div>
+        <div class="analysis-context-card desktop"><span>Manifest Desktop Potential</span><strong id="desktopPotentialTier">Assessing…</strong><p id="desktopPotentialText">The desktop application will be able to inspect more hardware information than a webpage can.</p></div>
+      </div>
+      <div class="modal-recommendation"><div class="modal-rec-check">✓</div><div><span>Recommended Browser Setup</span><strong id="recommendedExperience">Analyzing…</strong><p id="recommendedReason">Manifest will select between the lightweight options included in this browser prototype.</p><details class="technical-details"><summary>Technical model details</summary><div>Current browser model: <b id="recommendedTier">Analyzing…</b></div></details></div></div>
+      <div class="desktop-potential-strip"><span>Desktop behavior</span><strong>Search broadly. Download selectively.</strong><p>Manifest Desktop is designed to compare compatible local models, recommend Fast / Balanced / Maximum setups, and download only the models the user approves—not an entire model library.</p></div>
+      <div class="modal-actions"><button id="useRecommendedBtn" type="button" disabled>Use Recommended</button><button id="analyzeAgainBtn" type="button">Analyze Again</button><span class="modal-state" id="scanState"><i></i> Ready</span></div>
       <div class="modal-detail-line">GPU buffer tier: <strong id="specBuffer">—</strong></div>
+      <div class="browser-limit"><strong>Browser limitation:</strong> exact GPU memory and other native hardware details may be hidden for privacy. Manifest Desktop will perform the deeper hardware assessment locally after installation.</div>
     </div>
   </dialog>
 
@@ -135,5 +178,6 @@
 
   <dialog class="modal" id="aboutModal"><form method="dialog"><button value="cancel">Close</button></form></dialog>
   <script type="module" src="app.js"></script>
+  <script type="module" src="product.js"></script>
 </body>
 </html>
