@@ -1,0 +1,14 @@
+{
+  "name": "manifest-desktop",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Manifest Desktop — one-install private local AI",
+  "scripts": {
+    "tauri": "tauri",
+    "icons": "tauri icon app-icon.svg",
+    "build": "npm run icons && tauri build"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0"
+  }
+}

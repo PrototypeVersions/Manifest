@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>Manifest</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="rail">
+      <div>
+        <div class="brand-row">
+          <div class="brand-mark">M</div>
+          <div>
+            <strong>Manifest</strong>
+            <span>DESKTOP / PRIVATE AI</span>
+          </div>
+        </div>
+        <div class="rail-rule"></div>
+        <p class="rail-copy">One installation turns this computer into your personal AI.</p>
+      </div>
+      <div class="privacy-card">
+        <i></i>
+        <div><strong>Local by default</strong><span>Conversations stay on this computer.</span></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <section id="setupView" class="view setup-view">
+        <div class="eyebrow">MANIFEST DESKTOP / 0.1</div>
+        <h1>Turn this computer<br/>into your AI.</h1>
+        <p class="lead">Manifest understands your hardware, installs an appropriate local model, and runs it for you. No model hunting. No API key. No separate AI runtime.</p>
+
+        <div class="setup-grid">
+          <section class="setup-card primary-card">
+            <div class="step-number">01</div>
+            <div class="card-copy">
+              <span class="card-label">DEVICE INTELLIGENCE</span>
+              <h2>Understand this computer.</h2>
+              <p>Manifest checks the resources available to local AI and creates a private capability profile.</p>
+            </div>
+            <button id="analyzeBtn" class="button dark">Analyze This Computer <span>→</span></button>
+          </section>
+
+          <section id="profileCard" class="setup-card profile-card hidden">
+            <div class="profile-head"><span class="card-label">THIS COMPUTER</span><span id="scorePill" class="score-pill">—</span></div>
+            <div class="profile-list">
+              <div><span>System</span><strong id="profileSystem">—</strong></div>
+              <div><span>Processor</span><strong id="profileCpu">—</strong></div>
+              <div><span>Memory</span><strong id="profileRam">—</strong></div>
+              <div><span>Local AI tier</span><strong id="profileTier">—</strong></div>
+            </div>
+          </section>
+
+          <section id="recommendCard" class="setup-card install-card hidden">
+            <div class="step-number">02</div>
+            <div class="card-copy">
+              <span class="card-label">MANIFEST RECOMMENDS</span>
+              <h2 id="modelName">Manifest Local</h2>
+              <p id="modelReason">A private local model selected to run comfortably on this computer.</p>
+              <div class="model-meta"><span id="modelDetail">Local intelligence</span><span id="modelSize">~1.12 GB</span></div>
+            </div>
+            <div id="downloadWrap" class="download-wrap hidden">
+              <div class="download-meta"><span id="downloadText">Preparing…</span><strong id="downloadPercent">0%</strong></div>
+              <div class="progress"><div id="downloadBar"></div></div>
+            </div>
+            <button id="installBtn" class="button green">Install My AI <span>↓</span></button>
+          </section>
+
+          <section id="readyCard" class="setup-card ready-card hidden">
+            <div class="step-number check">✓</div>
+            <div class="card-copy">
+              <span class="card-label">READY</span>
+              <h2>Your AI is installed.</h2>
+              <p>Manifest will start the private runtime and keep it available only on this computer.</p>
+            </div>
+            <button id="startBtn" class="button dark">Start Manifest <span>→</span></button>
+          </section>
+        </div>
+
+        <div id="setupStatus" class="status-line">PRIVATE / AUTOMATIC / YOURS</div>
+      </section>
+
+      <section id="chatView" class="view chat-view hidden">
+        <header class="chat-head">
+          <div>
+            <span class="eyebrow">LOCAL INTELLIGENCE</span>
+            <h2>Manifest</h2>
+          </div>
+          <div class="chat-head-actions">
+            <span class="runtime-pill"><i></i> ON THIS COMPUTER</span>
+            <button id="newChatBtn" class="text-button">New Chat</button>
+          </div>
+        </header>
+
+        <div id="messages" class="messages">
+          <div id="emptyState" class="empty-state">
+            <div class="empty-mark">M</div>
+            <h3>Your private local AI is ready.</h3>
+            <p>Ask anything. Manifest is running the model installed on this computer.</p>
+          </div>
+        </div>
+
+        <div class="composer-wrap">
+          <form id="chatForm" class="composer">
+            <textarea id="promptInput" rows="1" placeholder="Message Manifest" autocomplete="off"></textarea>
+            <button id="sendBtn" class="send" type="submit" aria-label="Send">↑</button>
+          </form>
+          <p>LOCAL INFERENCE · NO PER-MESSAGE API FEE</p>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

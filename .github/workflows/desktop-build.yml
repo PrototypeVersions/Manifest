@@ -1,0 +1,130 @@
+name: Build Manifest Desktop
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "desktop/**"
+      - ".github/workflows/desktop-build.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  build-desktop:
+    name: ${{ matrix.name }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: macOS Intel
+            os: macos-15-intel
+            target: x86_64-apple-darwin
+            artifact: manifest-macos-intel
+          - name: macOS Apple Silicon
+            os: macos-15
+            target: aarch64-apple-darwin
+            artifact: manifest-macos-apple-silicon
+          - name: Windows x64
+            os: windows-latest
+            target: x86_64-pc-windows-msvc
+            artifact: manifest-windows-x64
+
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: desktop
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: desktop/package.json
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      - name: Install Tauri CLI
+        run: npm install
+
+      - name: Generate app icons
+        run: npm run icons
+
+      - name: Build bundled llama.cpp runtime on macOS
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          set -euxo pipefail
+          git clone --depth 1 --branch b10868 https://github.com/ggml-org/llama.cpp.git llama.cpp
+          cmake -S llama.cpp -B llama-build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_SHARED_LIBS=OFF \
+            -DLLAMA_BUILD_TESTS=OFF \
+            -DLLAMA_BUILD_EXAMPLES=OFF \
+            -DLLAMA_BUILD_APP=OFF \
+            -DLLAMA_BUILD_UI=OFF \
+            -DLLAMA_OPENSSL=OFF \
+            -DGGML_NATIVE=OFF
+          cmake --build llama-build --config Release --target llama-server -j 4
+          mkdir -p src-tauri/binaries
+          SERVER="$(find llama-build -type f -name llama-server | head -n 1)"
+          test -n "$SERVER"
+          cp "$SERVER" "src-tauri/binaries/llama-server-${{ matrix.target }}"
+          chmod +x "src-tauri/binaries/llama-server-${{ matrix.target }}"
+
+      - name: Build bundled llama.cpp runtime on Windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          git clone --depth 1 --branch b10868 https://github.com/ggml-org/llama.cpp.git llama.cpp
+          cmake -S llama.cpp -B llama-build `
+            -DBUILD_SHARED_LIBS=OFF `
+            -DLLAMA_BUILD_TESTS=OFF `
+            -DLLAMA_BUILD_EXAMPLES=OFF `
+            -DLLAMA_BUILD_APP=OFF `
+            -DLLAMA_BUILD_UI=OFF `
+            -DLLAMA_OPENSSL=OFF `
+            -DGGML_NATIVE=OFF
+          cmake --build llama-build --config Release --target llama-server --parallel 4
+          New-Item -ItemType Directory -Force -Path src-tauri/binaries | Out-Null
+          $server = Get-ChildItem -Path llama-build -Recurse -Filter llama-server.exe | Select-Object -First 1
+          if (-not $server) { throw "llama-server.exe was not produced" }
+          Copy-Item $server.FullName "src-tauri/binaries/llama-server-${{ matrix.target }}.exe"
+
+      - name: Build Manifest on macOS
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run tauri build -- --target "${{ matrix.target }}" 2>&1 | tee tauri-build.log
+
+      - name: Build Manifest on Windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          npm run tauri build -- --target "${{ matrix.target }}" 2>&1 | Tee-Object -FilePath tauri-build.log
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Upload desktop bundle
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: desktop/src-tauri/target/${{ matrix.target }}/release/bundle/**/*
+          if-no-files-found: error
+
+      - name: Upload build log on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}-build-log
+          path: desktop/tauri-build.log
+          if-no-files-found: ignore

@@ -1,0 +1,25 @@
+[package]
+name = "manifest-desktop"
+version = "0.1.0"
+description = "Manifest Desktop private local AI"
+authors = ["Manifest"]
+edition = "2021"
+rust-version = "1.88"
+
+[lib]
+name = "manifest_desktop_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-shell = "2.3.6"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+reqwest = { version = "0.12", default-features = false, features = ["json", "stream", "rustls-tls"] }
+futures-util = "0.3"
+sysinfo = "0.37.1"
+sha2 = "0.10"
+tokio = { version = "1", features = ["time"] }
