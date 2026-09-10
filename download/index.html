@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f2f0ea" />
+  <title>Download Manifest Desktop</title>
+  <meta name="description" content="Download Manifest Desktop for macOS or Windows. Manifest analyzes your hardware, installs a compatible local AI model, and runs it privately on your computer." />
+  <link rel="stylesheet" href="download.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../">MANIFEST<span>Private AI for a more capable you</span></a>
+    <nav><a href="../">Home</a><a href="#downloads">Downloads</a><a href="#install">Install</a></nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">MANIFEST DESKTOP / ALPHA</div>
+      <h1>Turn the computer<br>you already own<br>into your AI.</h1>
+      <p>Manifest analyzes your hardware, selects a local AI that fits, downloads only what you approve, and runs it privately on your computer. No model hunting. No API key. No separate inference software.</p>
+      <div class="hero-actions">
+        <a id="primaryDownload" class="primary" href="#downloads">Choose your download <span>↓</span></a>
+        <a class="secondary" href="../#demo">Try the browser prototype</a>
+      </div>
+      <div class="trust">LOCAL BY DEFAULT <i>/</i> SELECTIVE DOWNLOADS <i>/</i> NO PER-MESSAGE API FEE</div>
+    </section>
+
+    <section class="system-readout" aria-label="Manifest setup flow">
+      <article><small>01</small><strong>Analyze</strong><span>CPU · GPU · memory · storage</span></article>
+      <article><small>02</small><strong>Select</strong><span>Manifest ranks compatible local AI</span></article>
+      <article><small>03</small><strong>Install</strong><span>Only the model you approve is downloaded</span></article>
+      <article><small>04</small><strong>Run</strong><span>Private local inference on your computer</span></article>
+    </section>
+
+    <section class="downloads" id="downloads">
+      <div class="section-head">
+        <div class="eyebrow">DOWNLOAD MANIFEST</div>
+        <h2>Choose your computer.</h2>
+        <p id="recommendationText">Manifest will highlight the best match for this device when your browser exposes enough information.</p>
+      </div>
+
+      <div class="download-grid">
+        <article class="download-card" id="appleCard" data-platform="apple">
+          <div class="card-top"><span>MAC</span><span class="badge" id="appleBadge">APPLE SILICON</span></div>
+          <h3>Mac — Apple Silicon</h3>
+          <p>For Mac computers with Apple M-series chips: M1, M2, M3, M4 and later.</p>
+          <div class="requirements"><span>macOS 11+</span><span>ARM64</span><span>DMG</span></div>
+          <a class="download-button" href="https://github.com/PrototypeVersions/Manifest/releases/download/v0.1.0/Manifest-0.1.0-Apple-Silicon.dmg">Download for Apple Silicon <span>↓</span></a>
+        </article>
+
+        <article class="download-card" id="intelCard" data-platform="intel">
+          <div class="card-top"><span>MAC</span><span class="badge">INTEL</span></div>
+          <h3>Mac — Intel</h3>
+          <p>For older Mac computers with an Intel processor.</p>
+          <div class="requirements"><span>macOS 10.15+</span><span>x86_64</span><span>DMG</span></div>
+          <a class="download-button" href="https://github.com/PrototypeVersions/Manifest/releases/download/v0.1.0/Manifest-0.1.0-Intel.dmg">Download for Intel Mac <span>↓</span></a>
+        </article>
+
+        <article class="download-card" id="windowsCard" data-platform="windows">
+          <div class="card-top"><span>WINDOWS</span><span class="badge">x64</span></div>
+          <h3>Windows</h3>
+          <p>Standard installer for 64-bit Windows computers.</p>
+          <div class="requirements"><span>Windows 10/11</span><span>x64</span><span>EXE</span></div>
+          <a class="download-button" href="https://github.com/PrototypeVersions/Manifest/releases/download/v0.1.0/Manifest-0.1.0-Windows-x64.exe">Download for Windows <span>↓</span></a>
+          <a class="small-link" href="https://github.com/PrototypeVersions/Manifest/releases/download/v0.1.0/Manifest-0.1.0-Windows-x64.msi">Need the MSI package?</a>
+        </article>
+      </div>
+
+      <div class="version-line"><span>Current alpha</span><strong>Manifest Desktop 0.1.0</strong><a href="https://github.com/PrototypeVersions/Manifest/releases/tag/v0.1.0">Release details</a></div>
+    </section>
+
+    <section class="install" id="install">
+      <div class="install-copy">
+        <div class="eyebrow">FIRST LAUNCH</div>
+        <h2>Install once.<br>Manifest handles the rest.</h2>
+        <p>This alpha is already functional, but it is not yet notarized with Apple or production-signed for Windows. That means your operating system may show a security confirmation the first time you open it.</p>
+      </div>
+      <div class="instructions">
+        <article>
+          <span>MACOS</span>
+          <h3>If macOS says it cannot verify Manifest</h3>
+          <p>Drag Manifest into Applications first. Then open <strong>System Settings → Privacy &amp; Security</strong> and choose <strong>Open Anyway</strong>. You should only need to approve that installed copy once.</p>
+        </article>
+        <article>
+          <span>WINDOWS</span>
+          <h3>If Windows shows SmartScreen</h3>
+          <p>Choose <strong>More info</strong>, verify the app is Manifest, then choose <strong>Run anyway</strong>. Production signing will remove most of this friction later.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="alpha-note">
+      <div><span>ALPHA SOFTWARE</span><strong>Built for testing the core Manifest experience.</strong></div>
+      <p>Manifest currently starts with a conservative local model so the installation path is dependable. The model catalog, stronger automatic recommendations, upgrades, and broader task routing will expand from here.</p>
+    </section>
+  </main>
+
+  <footer><a href="../">MANIFEST</a><span>Your AI. Your Devices.</span><span>Private / Automatic / Yours</span></footer>
+  <script src="download.js"></script>
+</body>
+</html>
