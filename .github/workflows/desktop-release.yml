@@ -1,0 +1,84 @@
+name: Publish Manifest Desktop Release
+
+on:
+  workflow_run:
+    workflows: ["Build Manifest Desktop"]
+    types: [completed]
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  publish:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_branch == 'main' &&
+      contains(github.event.workflow_run.head_commit.message, '[release]')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout release commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+
+      - name: Download desktop build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+          pattern: manifest-*
+          path: artifacts
+
+      - name: Prepare public installers
+        shell: bash
+        run: |
+          set -euxo pipefail
+          VERSION="$(tr -d '[:space:]' < desktop/release-version.txt)"
+          test -n "$VERSION"
+          mkdir -p release
+
+          cp "artifacts/manifest-macos-apple-silicon/dmg/Manifest_${VERSION}_aarch64.dmg" \
+             "release/Manifest-${VERSION}-Apple-Silicon.dmg"
+          cp "artifacts/manifest-macos-intel/dmg/Manifest_${VERSION}_x64.dmg" \
+             "release/Manifest-${VERSION}-Intel.dmg"
+          cp "artifacts/manifest-windows-x64/nsis/Manifest_${VERSION}_x64-setup.exe" \
+             "release/Manifest-${VERSION}-Windows-x64.exe"
+          cp "artifacts/manifest-windows-x64/msi/Manifest_${VERSION}_x64_en-US.msi" \
+             "release/Manifest-${VERSION}-Windows-x64.msi"
+
+          cat > release-notes.md <<EOF
+          # Manifest Desktop ${VERSION}
+
+          Private local AI for the computer you already own.
+
+          ## Downloads
+          - **Mac — Apple Silicon:** for M1, M2, M3, M4 and later Apple-silicon Macs.
+          - **Mac — Intel:** for older Intel-based Macs.
+          - **Windows x64:** standard installer plus MSI package.
+
+          ## Alpha note
+          This is an early Manifest Desktop build. Mac builds are ad-hoc signed but are not yet Apple-notarized, so macOS may ask you to approve Manifest in **System Settings → Privacy & Security → Open Anyway** on first launch. Windows may similarly show a SmartScreen warning until production code signing is added.
+
+          Manifest analyzes hardware locally, downloads only the selected AI model, and runs inference on the user's computer. No separate Ollama or LM Studio installation is required.
+          EOF
+
+      - name: Create or update GitHub Release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euxo pipefail
+          VERSION="$(tr -d '[:space:]' < desktop/release-version.txt)"
+          TAG="v${VERSION}"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" release/* --clobber
+            gh release edit "$TAG" --title "Manifest Desktop ${VERSION}" --notes-file release-notes.md --latest
+          else
+            gh release create "$TAG" release/* \
+              --target "${{ github.event.workflow_run.head_sha }}" \
+              --title "Manifest Desktop ${VERSION}" \
+              --notes-file release-notes.md \
+              --latest
+          fi
