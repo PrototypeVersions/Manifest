@@ -3,135 +3,130 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#111315" />
-  <title>Manifest — Private AI</title>
-  <meta name="description" content="A private, browser-native AI chat. The model runs on your device." />
+  <meta name="theme-color" content="#f2f0ea" />
+  <title>Manifest — Your AI. Your Devices.</title>
+  <meta name="description" content="Manifest is a private intelligence layer that discovers and uses the best AI available across your own devices." />
   <link rel="preconnect" href="https://esm.run" crossorigin>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar" id="sidebar">
-      <div class="brand-row">
-        <div class="brand-mark">M</div>
-        <div>
-          <div class="brand-name">Manifest</div>
-          <div class="brand-subtitle">Local AI</div>
+  <header class="site-header">
+    <a class="wordmark" href="#home">MANIFEST<span>Private AI for a more capable you</span></a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#roadmap">Roadmap</a>
+    </nav>
+    <a class="header-cta" href="#demo">Get Started</a>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow">LOCAL AI. REAL FREEDOM.</div>
+        <h1>Your AI.<br>Your Devices.</h1>
+        <p class="hero-text">Manifest helps you discover and use the best AI models available on your own devices — phone, laptop or desktop. No subscriptions. No per-message API fees. Just private, capable AI that works for you.</p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="#demo">Get Started <span>→</span></a>
+          <a class="secondary-btn" href="#vision">See the Vision <span>▶</span></a>
         </div>
+        <div class="trust-line">PRIVATE <i>/</i> OPEN <i>/</i> YOURS</div>
       </div>
 
-      <button class="new-chat" id="newChatBtn" type="button">
-        <span>＋</span> New conversation
-      </button>
-
-      <div class="side-section">
-        <div class="side-label">This device</div>
-        <div class="privacy-card">
-          <span class="privacy-dot"></span>
-          <div>
-            <strong>Private by design</strong>
-            <p>Chats and inference stay in this browser.</p>
+      <div class="hero-visual" aria-label="Manifest running on a personal computer">
+        <div class="window-line one"></div>
+        <div class="window-line two"></div>
+        <div class="soft-landscape"></div>
+        <div class="desk-object books"><span>IDEAS</span><span>TOOLS</span><span>A BRIGHTER TOMORROW</span></div>
+        <div class="desk-object cup"></div>
+        <div class="plant"><span></span><span></span><span></span><span></span></div>
+        <div class="laptop">
+          <div class="laptop-screen">
+            <div class="mini-sidebar">
+              <strong>MANIFEST</strong>
+              <span>New Chat</span><span>Library</span><span>Models</span><span>Devices</span><span>Settings</span>
+            </div>
+            <div class="mini-chat">
+              <div class="local-status">Local AI <b></b></div>
+              <p>How can I help you today?</p>
+              <div class="mini-input">Ask anything… <b>›</b></div>
+            </div>
           </div>
+          <div class="laptop-base"></div>
         </div>
+        <div class="side-words">PEOPLE<br>IDEAS<br>KNOWLEDGE<br>POSSIBILITIES</div>
       </div>
+    </section>
 
-      <div class="sidebar-spacer"></div>
+    <section class="feature-strip" id="features">
+      <article><div class="feature-icon device-icon"></div><h3>Automatic Setup</h3><p>Manifest detects your device and recommends the best AI models for you.</p></article>
+      <article><div class="feature-icon database-icon"></div><h3>Use Any Local Model</h3><p>Works toward a single interface for WebLLM, Ollama, LM Studio and other local runtimes.</p></article>
+      <article><div class="feature-icon lock-icon"></div><h3>Private by Design</h3><p>Your conversations and files can stay on your devices. No cloud is required for local use.</p></article>
+      <article><div class="feature-icon growth-icon"></div><h3>Built for What’s Next</h3><p>From personal productivity to AI agents and multi-device compute, Manifest grows with you.</p></article>
+    </section>
 
-      <button class="side-action" id="clearBtn" type="button">Clear conversation</button>
-      <button class="side-action" id="aboutBtn" type="button">About Manifest</button>
-    </aside>
+    <section class="statement" id="vision">
+      <span></span><p>INTELLIGENCE BELONGS TO EVERYONE</p><span></span>
+    </section>
 
-    <main class="main-panel">
-      <header class="topbar">
-        <button class="icon-button mobile-only" id="menuBtn" type="button" aria-label="Open menu">☰</button>
-        <div class="top-title">
-          <span>Manifest</span>
-          <span class="status-pill" id="statusPill">Not loaded</span>
-        </div>
-        <button class="icon-button" id="settingsBtn" type="button" aria-label="Model settings">⚙</button>
-      </header>
+    <section class="vision-section" id="how">
+      <div class="section-intro"><div class="eyebrow">THE MANIFEST LAYER</div><h2>One interface above every model.</h2><p>Manifest is not meant to be another model. It is the intelligence layer that discovers what you have, understands what your device can handle, and routes each task to the best available local AI.</p></div>
+      <div class="flow">
+        <div class="flow-card"><small>01</small><strong>Discover</strong><p>Find models already installed through supported local runtimes.</p></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-card"><small>02</small><strong>Evaluate</strong><p>Match model capability to hardware, memory and the task at hand.</p></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-card"><small>03</small><strong>Route</strong><p>Use the best available model without making the user manage technical details.</p></div>
+      </div>
+    </section>
 
-      <section class="chat-stage" id="chatStage">
+    <section class="roadmap-section" id="roadmap">
+      <div class="roadmap-title"><div class="eyebrow">ROADMAP</div><h2>From local chat to personal AI infrastructure.</h2></div>
+      <div class="roadmap-grid">
+        <article><b>NOW</b><h3>Browser AI</h3><p>Private local chat with automatic model recommendations and zero per-message fees.</p></article>
+        <article><b>NEXT</b><h3>Universal Model Access</h3><p>Connect WebLLM, Ollama, LM Studio and additional local inference engines through one interface.</p></article>
+        <article><b>THEN</b><h3>Personal Intelligence</h3><p>Local files, memory, projects and private knowledge that stay under the user’s control.</p></article>
+        <article><b>FUTURE</b><h3>Device Network</h3><p>Route work across phones, laptops and home computers, then add autonomous local agents.</p></article>
+      </div>
+    </section>
+
+    <section class="demo-section" id="demo">
+      <div class="demo-copy"><div class="eyebrow">LIVE PROTOTYPE</div><h2>Try Manifest locally.</h2><p>This prototype runs an open model directly in your browser with WebGPU. The first load downloads the selected model to your browser cache.</p></div>
+      <div class="demo-app">
+        <div class="demo-topbar"><strong>MANIFEST</strong><span class="status-pill" id="statusPill">Not loaded</span><button id="settingsBtn" type="button">Model</button></div>
         <div class="welcome" id="welcome">
-          <div class="welcome-mark">M</div>
-          <h1>Your AI. On your device.</h1>
-          <p>Manifest runs an open model directly in your browser. No API key, no per-message fee, and your conversation is stored locally on this device.</p>
-
+          <h3>Your private local AI</h3>
+          <p>No API key. No per-message fee.</p>
           <button class="load-button" id="loadModelBtn" type="button">Load AI model</button>
           <div class="load-note" id="loadNote">First load downloads the model to your browser cache.</div>
-
           <div class="suggestion-grid">
-            <button class="suggestion" data-prompt="Explain something surprising about the universe in simple language.">
-              <span class="suggestion-kicker">Explore</span>
-              Explain something surprising about the universe
-            </button>
-            <button class="suggestion" data-prompt="Help me think through a difficult decision step by step.">
-              <span class="suggestion-kicker">Think</span>
-              Help me work through a difficult decision
-            </button>
-            <button class="suggestion" data-prompt="Write a short, vivid story about a city that wakes up one day with no internet.">
-              <span class="suggestion-kicker">Create</span>
-              Write a short story from an unusual premise
-            </button>
+            <button class="suggestion" data-prompt="Explain something surprising about the universe in simple language.">Explain something surprising</button>
+            <button class="suggestion" data-prompt="Help me think through a difficult decision step by step.">Help me think through a decision</button>
+            <button class="suggestion" data-prompt="Write a short, vivid story about a city that wakes up one day with no internet.">Create something original</button>
           </div>
         </div>
-
-        <div class="messages" id="messages" aria-live="polite"></div>
-      </section>
-
-      <div class="composer-wrap">
-        <div class="progress-wrap hidden" id="progressWrap">
-          <div class="progress-text" id="progressText">Preparing model…</div>
-          <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
-        </div>
-
-        <form class="composer" id="composer">
-          <textarea id="promptInput" rows="1" placeholder="Message Manifest…" aria-label="Message Manifest"></textarea>
-          <button class="send-button" id="sendBtn" type="submit" disabled aria-label="Send message">↑</button>
-        </form>
-        <div class="composer-caption">Runs locally with WebGPU. Performance depends on your device.</div>
+        <div class="messages hidden" id="messages" aria-live="polite"></div>
+        <div class="progress-wrap hidden" id="progressWrap"><div class="progress-text" id="progressText">Preparing model…</div><div class="progress-track"><div class="progress-bar" id="progressBar"></div></div></div>
+        <form class="composer" id="composer"><textarea id="promptInput" rows="1" placeholder="Ask anything…" aria-label="Message Manifest"></textarea><button class="send-button" id="sendBtn" type="submit" disabled>↑</button></form>
       </div>
-    </main>
-  </div>
+    </section>
+  </main>
 
-  <div class="scrim" id="scrim"></div>
+  <footer><strong>MANIFEST</strong><span>Your AI. Your Devices.</span><span>Private / Open / Yours</span></footer>
+
+  <div class="hidden-compat" aria-hidden="true">
+    <aside id="sidebar"></aside><div id="scrim"></div><button id="menuBtn"></button><button id="newChatBtn"></button><button id="clearBtn"></button><button id="aboutBtn"></button><div id="chatStage"></div>
+  </div>
 
   <dialog class="modal" id="settingsModal">
     <form method="dialog">
-      <div class="modal-head">
-        <div>
-          <h2>Model</h2>
-          <p>Choose how much intelligence vs. speed you want.</p>
-        </div>
-        <button class="modal-close" value="cancel" aria-label="Close">×</button>
-      </div>
-      <label class="model-option">
-        <input type="radio" name="model" value="Qwen2-0.5B-Instruct-q4f16_1-MLC" checked>
-        <span><strong>Light</strong><small>Qwen2 0.5B · fastest, best for phones</small></span>
-      </label>
-      <label class="model-option">
-        <input type="radio" name="model" value="Llama-3.2-1B-Instruct-q4f16_1-MLC">
-        <span><strong>Stronger</strong><small>Llama 3.2 1B · larger download and memory use</small></span>
-      </label>
-      <p class="modal-footnote">Changing models unloads the current model and requires loading the new one.</p>
+      <div class="modal-head"><div><h2>Choose a model</h2><p>Start light on phones; use the stronger option on more capable devices.</p></div><button class="modal-close" value="cancel">×</button></div>
+      <label class="model-option"><input type="radio" name="model" value="Qwen2-0.5B-Instruct-q4f16_1-MLC" checked><span><strong>Light</strong><small>Qwen2 0.5B · fastest, best for phones</small></span></label>
+      <label class="model-option"><input type="radio" name="model" value="Llama-3.2-1B-Instruct-q4f16_1-MLC"><span><strong>Stronger</strong><small>Llama 3.2 1B · larger download and memory use</small></span></label>
     </form>
   </dialog>
-
-  <dialog class="modal" id="aboutModal">
-    <form method="dialog">
-      <div class="modal-head">
-        <div>
-          <h2>About Manifest</h2>
-          <p>Browser-native artificial intelligence.</p>
-        </div>
-        <button class="modal-close" value="cancel" aria-label="Close">×</button>
-      </div>
-      <div class="about-copy">
-        <p>Manifest uses WebLLM to run an open-weight language model directly on compatible hardware through WebGPU.</p>
-        <p>There is no paid chat API behind this demo. The model files are downloaded from their public model host, then cached by your browser when supported.</p>
-      </div>
-    </form>
-  </dialog>
+  <dialog class="modal" id="aboutModal"><form method="dialog"><button value="cancel">Close</button></form></dialog>
 
   <script type="module" src="app.js"></script>
 </body>
