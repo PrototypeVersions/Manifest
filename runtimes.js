@@ -32,8 +32,8 @@ function connectionFailure(error, name) {
     status: "offline",
     models: [],
     message: aborted
-      ? `${name} did not respond. Make sure its local server is running.`
-      : `${name} could not be reached. It may be closed, or the browser may be blocking localhost/CORS access.`,
+      ? `${name} was not detected. Start its local server, then scan again.`
+      : `${name} was not detected. If it is already running, browser permission or local access may still need to be enabled.`,
   };
 }
 
@@ -114,7 +114,7 @@ export class OllamaRuntime {
     try {
       const response = await fetchWithTimeout(`${this.baseUrl}/api/tags`);
       if (!response.ok) {
-        return { status: response.status === 401 ? "auth" : "offline", models: [], message: `Ollama returned HTTP ${response.status}.` };
+        return { status: response.status === 401 ? "auth" : "offline", models: [], message: response.status === 401 ? "Ollama is asking for authentication." : "Ollama responded, but Manifest could not read its model list." };
       }
       const data = await response.json();
       const models = (data.models || []).map(model => ({
@@ -122,7 +122,7 @@ export class OllamaRuntime {
         name: model.name || model.model,
         meta: [model.details?.parameter_size, model.details?.quantization_level].filter(Boolean).join(" · ") || "Local Ollama model",
       }));
-      return { status: "connected", models, message: models.length ? `${models.length} installed model${models.length === 1 ? "" : "s"} found.` : "Ollama is connected, but no local models were found." };
+      return { status: "connected", models, message: models.length ? `${models.length} installed model${models.length === 1 ? "" : "s"} found.` : "Ollama is connected. Download a model in Ollama, then scan again to make it available here." };
     } catch (error) {
       return connectionFailure(error, "Ollama");
     }
@@ -187,7 +187,7 @@ export class LMStudioRuntime {
     try {
       const response = await fetchWithTimeout(`${this.baseUrl}/api/v1/models`, { headers: this.headers() });
       if (!response.ok) {
-        return { status: response.status === 401 ? "auth" : "offline", models: [], message: response.status === 401 ? "LM Studio requires an API token." : `LM Studio returned HTTP ${response.status}.` };
+        return { status: response.status === 401 ? "auth" : "offline", models: [], message: response.status === 401 ? "LM Studio is connected but needs the local API token. Enter it above, then scan again." : "LM Studio responded, but Manifest could not read its model list." };
       }
       const data = await response.json();
       const models = (data.models || [])
@@ -197,7 +197,7 @@ export class LMStudioRuntime {
           name: model.display_name || model.key,
           meta: [model.params_string, model.quantization?.name, model.architecture].filter(Boolean).join(" · ") || "Local LM Studio model",
         }));
-      return { status: "connected", models, message: models.length ? `${models.length} local LLM${models.length === 1 ? "" : "s"} found.` : "LM Studio is connected, but no local LLMs were found." };
+      return { status: "connected", models, message: models.length ? `${models.length} local LLM${models.length === 1 ? "" : "s"} found.` : "LM Studio is connected. Download a model in LM Studio, then scan again to make it available here." };
     } catch (error) {
       return connectionFailure(error, "LM Studio");
     }
