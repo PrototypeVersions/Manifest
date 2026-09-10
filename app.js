@@ -10,6 +10,7 @@ const els = {
   scrim: $("scrim"),
   menuBtn: $("menuBtn"),
   newChatBtn: $("newChatBtn"),
+  newChatDemoBtn: $("newChatDemoBtn"),
   clearBtn: $("clearBtn"),
   aboutBtn: $("aboutBtn"),
   settingsBtn: $("settingsBtn"),
@@ -73,7 +74,7 @@ function simpleMarkdown(text = "") {
 
 function scrollToBottom() {
   requestAnimationFrame(() => {
-    els.chatStage.scrollTop = els.chatStage.scrollHeight;
+    if (els.chatStage) els.chatStage.scrollTop = els.chatStage.scrollHeight;
   });
 }
 
@@ -233,6 +234,8 @@ function resetConversation() {
   history = [];
   saveHistory();
   renderHistory();
+  els.promptInput.value = "";
+  autoResize();
   els.promptInput.focus();
 }
 
@@ -273,6 +276,7 @@ document.querySelectorAll(".suggestion").forEach(button => {
 });
 
 els.newChatBtn.addEventListener("click", () => { resetConversation(); closeSidebar(); });
+els.newChatDemoBtn?.addEventListener("click", resetConversation);
 els.clearBtn.addEventListener("click", () => { resetConversation(); closeSidebar(); });
 els.menuBtn.addEventListener("click", openSidebar);
 els.scrim.addEventListener("click", closeSidebar);
