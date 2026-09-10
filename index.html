@@ -69,18 +69,36 @@
         <div class="source-models" id="webllmModels"></div>
       </section>
 
-      <section class="source-card">
+      <section class="source-card source-local">
         <div class="source-card-head"><div class="source-identity"><span class="source-monogram">O</span><div><strong>Ollama</strong><small>Local inference server</small></div></div><span id="ollamaSourceStatus" class="source-status offline">Not connected</span></div>
         <label class="endpoint-row"><span>Endpoint</span><input id="ollamaEndpoint" type="text" value="http://localhost:11434" spellcheck="false" /></label>
         <div class="source-models" id="ollamaModels"><p class="source-empty">Scan to look for Ollama models.</p></div>
-        <details class="source-help"><summary>Connection help</summary><p>Start Ollama on this computer. If the browser blocks this website’s origin, configure Ollama’s allowed origins for the Manifest site and restart Ollama.</p></details>
+        <div class="source-onboarding">
+          <div class="setup-intro"><div><span class="setup-eyebrow">OPTIONAL LOCAL SOURCE</span><strong>Ollama not detected</strong><p>Install or start Ollama to make the models on this computer available inside Manifest.</p></div></div>
+          <details class="setup-guide">
+            <summary>Set Up Ollama <span>→</span></summary>
+            <div class="setup-guide-body">
+              <ol><li><strong>Install Ollama.</strong> If you do not have it yet, use the official Ollama download below.</li><li><strong>Start Ollama.</strong> Open the Ollama app, or run <code>ollama serve</code>.</li><li><strong>Allow Manifest if needed.</strong> If Ollama is running but Manifest still cannot connect, add <code>https://prototypeversions.github.io</code> to <code>OLLAMA_ORIGINS</code>, then restart Ollama.</li><li><strong>Return here and scan again.</strong> Your installed Ollama models should appear automatically.</li></ol>
+              <div class="setup-actions"><a href="https://ollama.com/download" target="_blank" rel="noopener">Download Ollama ↗</a><button type="button" onclick="document.getElementById('scanSourcesBtn')?.click()">I’ve Set It Up — Scan Again</button></div>
+            </div>
+          </details>
+        </div>
       </section>
 
-      <section class="source-card">
+      <section class="source-card source-local">
         <div class="source-card-head"><div class="source-identity"><span class="source-monogram">L</span><div><strong>LM Studio</strong><small>Local inference server</small></div></div><span id="lmstudioSourceStatus" class="source-status offline">Not connected</span></div>
         <div class="endpoint-grid"><label class="endpoint-row"><span>Endpoint</span><input id="lmstudioEndpoint" type="text" value="http://localhost:1234" spellcheck="false" /></label><label class="endpoint-row token-row"><span>API token <em>optional</em></span><input id="lmstudioToken" type="password" autocomplete="off" placeholder="Only if enabled in LM Studio" /></label></div>
         <div class="source-models" id="lmstudioModels"><p class="source-empty">Scan to look for LM Studio models.</p></div>
-        <details class="source-help"><summary>Connection help</summary><p>Start LM Studio’s server from the Developer page. Browser access may require CORS to be enabled; the CLI supports <code>lms server start --cors</code>. If authentication is enabled, enter the local API token above.</p></details>
+        <div class="source-onboarding">
+          <div class="setup-intro"><div><span class="setup-eyebrow">OPTIONAL LOCAL SOURCE</span><strong>LM Studio not detected</strong><p>Start LM Studio’s local server to make its downloaded models available inside Manifest.</p></div></div>
+          <details class="setup-guide">
+            <summary>Set Up LM Studio <span>→</span></summary>
+            <div class="setup-guide-body">
+              <ol><li><strong>Install and open LM Studio.</strong> Download it below if it is not already installed.</li><li><strong>Download a local model</strong> in LM Studio if you do not already have one.</li><li><strong>Start the API server.</strong> Open the Developer page and turn on the server. The normal address is <code>http://localhost:1234</code>.</li><li><strong>Enable browser access.</strong> Turn on <em>Enable CORS</em> in LM Studio’s server settings. If you enabled authentication, paste the API token above.</li><li><strong>Return here and scan again.</strong> Manifest should list the models exposed by LM Studio.</li></ol>
+              <div class="setup-actions"><a href="https://lmstudio.ai/download" target="_blank" rel="noopener">Download LM Studio ↗</a><button type="button" onclick="document.getElementById('scanSourcesBtn')?.click()">I’ve Set It Up — Scan Again</button></div>
+            </div>
+          </details>
+        </div>
       </section>
 
       <div class="sources-foot"><span>Connected models run through their local runtime. Manifest does not proxy these chats through a Manifest server.</span><strong>AUTO ROUTING / NEXT</strong></div>
