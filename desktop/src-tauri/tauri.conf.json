@@ -38,6 +38,9 @@
     ],
     "copyright": "Manifest",
     "shortDescription": "Private local AI, automatically configured for your computer.",
-    "longDescription": "Manifest analyzes your computer, installs a local AI model and runs private inference without per-message API fees."
+    "longDescription": "Manifest analyzes your computer, installs a local AI model and runs private inference without per-message API fees.",
+    "macOS": {
+      "signingIdentity": "-"
+    }
   }
 }
