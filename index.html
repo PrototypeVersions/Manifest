@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#111315" />
+  <title>Manifest — Private AI</title>
+  <meta name="description" content="A private, browser-native AI chat. The model runs on your device." />
+  <link rel="preconnect" href="https://esm.run" crossorigin>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand-row">
+        <div class="brand-mark">M</div>
+        <div>
+          <div class="brand-name">Manifest</div>
+          <div class="brand-subtitle">Local AI</div>
+        </div>
+      </div>
+
+      <button class="new-chat" id="newChatBtn" type="button">
+        <span>＋</span> New conversation
+      </button>
+
+      <div class="side-section">
+        <div class="side-label">This device</div>
+        <div class="privacy-card">
+          <span class="privacy-dot"></span>
+          <div>
+            <strong>Private by design</strong>
+            <p>Chats and inference stay in this browser.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-spacer"></div>
+
+      <button class="side-action" id="clearBtn" type="button">Clear conversation</button>
+      <button class="side-action" id="aboutBtn" type="button">About Manifest</button>
+    </aside>
+
+    <main class="main-panel">
+      <header class="topbar">
+        <button class="icon-button mobile-only" id="menuBtn" type="button" aria-label="Open menu">☰</button>
+        <div class="top-title">
+          <span>Manifest</span>
+          <span class="status-pill" id="statusPill">Not loaded</span>
+        </div>
+        <button class="icon-button" id="settingsBtn" type="button" aria-label="Model settings">⚙</button>
+      </header>
+
+      <section class="chat-stage" id="chatStage">
+        <div class="welcome" id="welcome">
+          <div class="welcome-mark">M</div>
+          <h1>Your AI. On your device.</h1>
+          <p>Manifest runs an open model directly in your browser. No API key, no per-message fee, and your conversation is stored locally on this device.</p>
+
+          <button class="load-button" id="loadModelBtn" type="button">Load AI model</button>
+          <div class="load-note" id="loadNote">First load downloads the model to your browser cache.</div>
+
+          <div class="suggestion-grid">
+            <button class="suggestion" data-prompt="Explain something surprising about the universe in simple language.">
+              <span class="suggestion-kicker">Explore</span>
+              Explain something surprising about the universe
+            </button>
+            <button class="suggestion" data-prompt="Help me think through a difficult decision step by step.">
+              <span class="suggestion-kicker">Think</span>
+              Help me work through a difficult decision
+            </button>
+            <button class="suggestion" data-prompt="Write a short, vivid story about a city that wakes up one day with no internet.">
+              <span class="suggestion-kicker">Create</span>
+              Write a short story from an unusual premise
+            </button>
+          </div>
+        </div>
+
+        <div class="messages" id="messages" aria-live="polite"></div>
+      </section>
+
+      <div class="composer-wrap">
+        <div class="progress-wrap hidden" id="progressWrap">
+          <div class="progress-text" id="progressText">Preparing model…</div>
+          <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+        </div>
+
+        <form class="composer" id="composer">
+          <textarea id="promptInput" rows="1" placeholder="Message Manifest…" aria-label="Message Manifest"></textarea>
+          <button class="send-button" id="sendBtn" type="submit" disabled aria-label="Send message">↑</button>
+        </form>
+        <div class="composer-caption">Runs locally with WebGPU. Performance depends on your device.</div>
+      </div>
+    </main>
+  </div>
+
+  <div class="scrim" id="scrim"></div>
+
+  <dialog class="modal" id="settingsModal">
+    <form method="dialog">
+      <div class="modal-head">
+        <div>
+          <h2>Model</h2>
+          <p>Choose how much intelligence vs. speed you want.</p>
+        </div>
+        <button class="modal-close" value="cancel" aria-label="Close">×</button>
+      </div>
+      <label class="model-option">
+        <input type="radio" name="model" value="Qwen2-0.5B-Instruct-q4f16_1-MLC" checked>
+        <span><strong>Light</strong><small>Qwen2 0.5B · fastest, best for phones</small></span>
+      </label>
+      <label class="model-option">
+        <input type="radio" name="model" value="Llama-3.2-1B-Instruct-q4f16_1-MLC">
+        <span><strong>Stronger</strong><small>Llama 3.2 1B · larger download and memory use</small></span>
+      </label>
+      <p class="modal-footnote">Changing models unloads the current model and requires loading the new one.</p>
+    </form>
+  </dialog>
+
+  <dialog class="modal" id="aboutModal">
+    <form method="dialog">
+      <div class="modal-head">
+        <div>
+          <h2>About Manifest</h2>
+          <p>Browser-native artificial intelligence.</p>
+        </div>
+        <button class="modal-close" value="cancel" aria-label="Close">×</button>
+      </div>
+      <div class="about-copy">
+        <p>Manifest uses WebLLM to run an open-weight language model directly on compatible hardware through WebGPU.</p>
+        <p>There is no paid chat API behind this demo. The model files are downloaded from their public model host, then cached by your browser when supported.</p>
+      </div>
+    </form>
+  </dialog>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
